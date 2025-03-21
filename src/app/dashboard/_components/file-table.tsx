@@ -1,12 +1,11 @@
 "use client";
 
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-
+import { ColumnDef } from "@tanstack/react-table";
 import {
   Table,
   TableBody,
@@ -17,7 +16,7 @@ import {
 } from "@/components/ui/table";
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
+  columns: ColumnDef<any, any>[];
   data: TData[];
 }
 
