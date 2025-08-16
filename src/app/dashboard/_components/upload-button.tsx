@@ -55,12 +55,26 @@ export function UploadButton() {
   const fileRef = form.register("file");
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    if (!orgId) return;
+    if (!orgId || !user.isSignedIn) {
+      toast({
+        variant: "destructive",
+        title: "Not Signed In",
+        description: "Please sign in to upload files.",
+      });
+      return;
+    }
 
     const postUrl = await generateUploadUrl();
-
+const allowedTypes = ["image/png", "application/pdf", "text/csv"];
     const fileType = values.file[0].type;
-
+if (!allowedTypes.includes(fileType)) {
+    toast({
+      variant: "destructive",
+      title: "Invalid File Type",
+      description: "Only PNG images, PDF documents, or CSV files are allowed.",
+    });
+    return;
+  }
     const result = await fetch(postUrl, {
       method: "POST",
       headers: { "Content-Type": fileType },
