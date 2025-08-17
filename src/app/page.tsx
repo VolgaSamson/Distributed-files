@@ -21,8 +21,8 @@ export default function LandingPage() {
           <div className="text-center">
             <Image
               src="/logo.png"
-              width="200"
-              height="200"
+              width="500"
+              height="500"
               alt="file drive logo"
               className="inline-block mb-8"
             />
